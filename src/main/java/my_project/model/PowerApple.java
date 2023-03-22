@@ -10,10 +10,19 @@ public class PowerApple extends Apple {
     }
 
     public void draw(DrawTool drawTool) {
-        drawTool.setCurrentColor(0,255,255,255);
+        drawTool.setCurrentColor(255,0,0,255);
         drawTool.drawFilledCircle(x,y,radius);
         drawTool.setCurrentColor(0,0,0,255);
         drawTool.drawCircle(x,y,radius);
+        drawTool.setCurrentColor(200,100,0,255);
+        drawTool.drawFilledRectangle(x-4,y-radius*1.5,10,20);
+        drawTool.setCurrentColor(0,0,0,255);
+        drawTool.drawRectangle(x-4,y-radius*1.5,10,20);
     }
 
+    public void update(double dt) {
+
+        super.update(dt);
+
+    }
 }

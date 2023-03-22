@@ -63,6 +63,12 @@ public class ProgramController {
         player01 = new Player(50, Config.WINDOW_HEIGHT - 100);
         viewController.draw(player01);
         viewController.register(player01);
+
+
+        double xPos = Math.random() * (Config.WINDOW_WIDTH - 50) + 50;
+        double yPos = Math.random() * (Config.WINDOW_HEIGHT - 50) + 50;
+        pApple01 = new PowerApple(xPos, yPos);
+        viewController.draw(pApple01);
     }
 
     /**
@@ -84,6 +90,10 @@ public class ProgramController {
             }
 
         }
+
+            if (checkAndHandleCollision(pApple01)) {
+                pApple01.jumpBack();
+            }
 
 
     }

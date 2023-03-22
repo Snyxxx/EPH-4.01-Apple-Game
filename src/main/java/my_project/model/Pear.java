@@ -6,6 +6,7 @@ import KAGO_framework.view.DrawTool;
 public class Pear extends Fruit {
 
     double timer = 0;
+    double speedX = Math.random()*180+30;
 
 
     public Pear(double x, double y){
@@ -28,13 +29,13 @@ public class Pear extends Fruit {
         //TODO 03 Eine Birne soll von oben herab fallen. Sobald sie unten den Bildschirmrand berührt wird die Methode jumpBack() aufgerufen (siehe TODO 04).
         super.update(dt);
         timer = timer+dt;
-        if (timer > 2) {
+        if (timer > 1.5) {
             timer = 0;
         }
-        if(timer < 1){
-            x = x + 40*dt;
+        if(timer < 0.75){
+            x = x + speedX*dt;
         }else{
-            x = x - 40*dt;
+            x = x - speedX*dt;
         }
     }
     //TODO 04 Lege eine Methode jumpBack() an, die bei Aufruf das Pear-Objekt oben am oberen Bildschirmrand an einer zufälligen x-Position positioniert.
