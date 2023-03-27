@@ -17,6 +17,8 @@ public class Player extends InteractiveGraphicalObject {
     private int keyToGoLeft;
     private int keyToGoRight;
     private int direction;
+    private boolean speedboost;
+    private double timer;
 
     public Player(double x, double y) {
         this.x = x;
@@ -24,6 +26,8 @@ public class Player extends InteractiveGraphicalObject {
         speed = 150;
         width = 80;
         height = 40;
+        speedboost = false;
+        timer = 0;
 
         this.keyToGoLeft = KeyEvent.VK_A;
         this.keyToGoRight = KeyEvent.VK_D;
@@ -51,6 +55,18 @@ public class Player extends InteractiveGraphicalObject {
         if (x < 0) {
             x = 0;
         }
+
+        if (speedboost){
+            timer += dt;
+
+            if (timer<=5){
+                speed = Math.random()*100 + 200;
+            }else{
+                speed = 150;
+                timer = 0;
+                speedboost = false;
+            }
+        }
     }
 
     @Override
@@ -71,5 +87,9 @@ public class Player extends InteractiveGraphicalObject {
         if(key == keyToGoRight){
             direction = -1;
         }
+    }
+
+    public void speedboost(){
+        speedboost = true;
     }
 }

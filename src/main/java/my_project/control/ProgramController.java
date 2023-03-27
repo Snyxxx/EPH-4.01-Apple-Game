@@ -82,6 +82,7 @@ public class ProgramController {
         for (Apple a : allApples) {
             if (checkAndHandleCollision(a)) {
                 a.jumpBack();
+
             }
         }
         for (Pear p : allPears) {
@@ -93,6 +94,7 @@ public class ProgramController {
 
             if (checkAndHandleCollision(pApple01)) {
                 pApple01.jumpBack();
+                player01.speedboost();
             }
 
 
