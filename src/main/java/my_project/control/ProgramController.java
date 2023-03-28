@@ -19,6 +19,7 @@ public class ProgramController {
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
 
+    private ChinesePear cPear01;
     private PowerApple pApple01;
     private Player player01;
     private ArrayList<Apple> allApples = new ArrayList<>();
@@ -69,6 +70,11 @@ public class ProgramController {
         double yPos = Math.random() * (Config.WINDOW_HEIGHT - 50) + 50;
         pApple01 = new PowerApple(xPos, yPos);
         viewController.draw(pApple01);
+
+        double xPos1 = Math.random() * (Config.WINDOW_WIDTH - 50) + 50;
+        double yPos1 = Math.random() * (Config.WINDOW_HEIGHT - 50) + 50;
+        cPear01 = new ChinesePear(xPos1, yPos1);
+        viewController.draw(cPear01);
     }
 
     /**
@@ -82,20 +88,28 @@ public class ProgramController {
         for (Apple a : allApples) {
             if (checkAndHandleCollision(a)) {
                 a.jumpBack();
-
+                player01.setPointsPlus();
             }
         }
         for (Pear p : allPears) {
             if (checkAndHandleCollision(p)) {
                 p.jumpBack();
+                player01.setPointsMinus();
             }
 
         }
 
-            if (checkAndHandleCollision(pApple01)) {
+        if (checkAndHandleCollision(pApple01)) {
                 pApple01.jumpBack();
                 player01.speedboost();
-            }
+                player01.applesCollected();
+        }
+
+        if (checkAndHandleCollision(cPear01)) {
+            cPear01.jumpBack();
+            player01.urTooSlow();
+            player01.pearsCollected();
+        }
 
 
     }
