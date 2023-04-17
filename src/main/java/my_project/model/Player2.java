@@ -53,9 +53,9 @@ public class Player2 extends InteractiveGraphicalObject {
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(255,127,36, 255);
-        drawTool.drawFilledRectangle(x, y, width, height);
+        drawTool.drawFilledRectangle(x + 800, y, width, height);
         drawTool.setCurrentColor(0, 0, 0, 255);
-        drawTool.drawRectangle(x, y, width, height);
+        drawTool.drawRectangle(x + 800, y, width, height);
 
         drawTool.drawText(10,10,"Speed: " + speed);
         drawTool.drawText(10,25,"Buffed: " + speedboost);
