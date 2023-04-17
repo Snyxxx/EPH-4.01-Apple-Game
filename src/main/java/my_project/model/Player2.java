@@ -6,7 +6,7 @@ import my_project.Config;
 
 import java.awt.event.KeyEvent;
 
-public class Player extends InteractiveGraphicalObject {
+public class Player2 extends InteractiveGraphicalObject {
 
 
     //Attribute
@@ -14,7 +14,7 @@ public class Player extends InteractiveGraphicalObject {
     private int points;
     private int pears;
     private int apples;
-    private boolean pearText;
+    private boolean appleText;
 
     //Tastennummern zur Steuerung
     private int keyToGoLeft;
@@ -31,8 +31,8 @@ public class Player extends InteractiveGraphicalObject {
     private boolean pMinus;
     private boolean applesC;
     private boolean pearsC;
-    private boolean pearsC1;
-    public Player(double x, double y) {
+    private boolean applesC1;
+    public Player2(double x, double y) {
         this.x = x;
         this.y = y;
         speed = 150;
@@ -43,31 +43,31 @@ public class Player extends InteractiveGraphicalObject {
         tTimer = 3;
         timer = 0;
         timer2 = 0;
-        pearText = false;
+        appleText = false;
 
-        this.keyToGoLeft = KeyEvent.VK_A;
-        this.keyToGoRight = KeyEvent.VK_D;
+        this.keyToGoLeft = KeyEvent.VK_LEFT;
+        this.keyToGoRight = KeyEvent.VK_RIGHT;
         this.direction = -1; //-1 keine Bewegung, 0 nach rechts, 2 nach links
     }
 
     @Override
     public void draw(DrawTool drawTool) {
-        drawTool.setCurrentColor(0, 0, 200, 255);
+        drawTool.setCurrentColor(255,127,36, 255);
         drawTool.drawFilledRectangle(x, y, width, height);
         drawTool.setCurrentColor(0, 0, 0, 255);
         drawTool.drawRectangle(x, y, width, height);
 
-        drawTool.drawText(10,60,"Speed: " + speed);
-        drawTool.drawText(10,75,"Buffed: " + speedboost);
-        drawTool.drawText(10,90,"Debuffed: " + urTooSlow);
+        drawTool.drawText(10,10,"Speed: " + speed);
+        drawTool.drawText(10,25,"Buffed: " + speedboost);
+        drawTool.drawText(10,40,"Debuffed: " + urTooSlow);
 
-        drawTool.drawText(460,60,"Points: " + points);
+        drawTool.drawText(460,30,"Points: " + points);
 
-        drawTool.drawText(390,60,"cPears: " + pears);
-        drawTool.drawText(520,60,"pApples: " + apples);
+        drawTool.drawText(390,30,"cPears: " + pears);
+        drawTool.drawText(520,30,"pApples: " + apples);
 
         if (tTimer<=1.5){
-            drawTool.drawText(x - 70,y - 54,"Zur Not frisst der Teufel Birnen! + L + Ratio");
+            drawTool.drawText(x - 70,y - 46,"Zur Not frisst der Teufel Äpfel? + L + Ratio");
         }
     }
 
@@ -87,14 +87,14 @@ public class Player extends InteractiveGraphicalObject {
 
         tTimer += dt;
 
-        if (pearsC1){
-            pearText = true;
-            pearsC1 = false;
+        if (applesC1){
+            appleText = true;
+            applesC1 = false;
         }
 
-        if (pearText) {
+        if (appleText) {
             tTimer = 0;
-            pearText = false;
+            appleText = false;
         }
 
         if (speedboost){
@@ -174,6 +174,6 @@ public class Player extends InteractiveGraphicalObject {
 
     public void pearsCollected(){ pearsC = true; }
 
-    public void pearsCollected1(){ pearsC1 = true; }
+    public void applesCollected1(){ applesC1 = true; }
     public void applesCollected(){ applesC = true; }
 }
